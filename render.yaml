@@ -1,0 +1,87 @@
+# ============================================
+# VitalLoop — Render Blueprint
+# Deploy all services with one click
+# ============================================
+
+services:
+  # --- Frontend: Static Site ---
+  - type: web
+    name: vitalloop-frontend
+    runtime: static
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/dist
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: DENY
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        value: https://vitalloop-backend.onrender.com/api
+      - key: VITE_WS_URL
+        value: https://vitalloop-backend.onrender.com
+      - key: VITE_APP_NAME
+        value: VitalLoop
+
+  # --- Backend: Node.js Web Service ---
+  - type: web
+    name: vitalloop-backend
+    runtime: node
+    buildCommand: cd backend && npm install && npm run build
+    startCommand: cd backend && npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "3001"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: vitalloop-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          name: vitalloop-cache
+          type: redis
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      - key: AI_SERVICE_URL
+        value: https://vitalloop-ai.onrender.com
+      - key: ENCRYPTION_KEY
+        generateValue: true
+      - key: CORS_ORIGIN
+        value: https://vitalloop-frontend.onrender.com
+
+  # --- AI Service: Python Web Service ---
+  - type: web
+    name: vitalloop-ai
+    runtime: python
+    buildCommand: cd ai-service && pip install -r requirements.txt
+    startCommand: cd ai-service && uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: AI_SERVICE_PORT
+        value: "8000"
+      - key: AI_DATABASE_URL
+        fromDatabase:
+          name: vitalloop-db
+          property: connectionString
+      - key: ANTHROPIC_API_KEY
+        sync: false
+
+# --- PostgreSQL Database ---
+databases:
+  - name: vitalloop-db
+    plan: free
+    databaseName: vitalloop
+    user: vitalloop_user
+
+# --- Redis Key-Value Store ---
+# Note: Render managed Redis is configured separately in the dashboard
+# The reference above uses fromService to auto-link
