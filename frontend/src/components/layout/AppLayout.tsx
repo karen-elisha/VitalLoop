@@ -1,4 +1,4 @@
-import { Outlet, NavLink, useLocation } from 'react-router-dom';
+import { Outlet, NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import { useAuthStore } from '../../stores/authStore';
 
@@ -24,7 +24,7 @@ export default function AppLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const user = useAuthStore((s) => s.user);
   const logout = useAuthStore((s) => s.logout);
-  const location = useLocation();
+
 
   const allNavItems = [
     ...navItems,

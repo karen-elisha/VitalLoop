@@ -24,12 +24,7 @@ export default function DashboardPage() {
     return 'Good evening';
   };
 
-  const riskColors: Record<string, string> = {
-    low: 'from-health-500 to-health-700',
-    medium: 'from-alert-500 to-alert-600',
-    high: 'from-orange-500 to-orange-700',
-    critical: 'from-danger-500 to-danger-600',
-  };
+
 
   return (
     <div className="max-w-7xl mx-auto space-y-6">

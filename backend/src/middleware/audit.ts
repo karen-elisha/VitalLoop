@@ -39,7 +39,7 @@ export function auditMiddleware(action: string, resource: string) {
           resource,
           req.params.id,
           { method: req.method, path: req.path },
-          req.ip,
+          typeof req.ip === 'string' ? req.ip : undefined,
           req.get('User-Agent')
         );
       }

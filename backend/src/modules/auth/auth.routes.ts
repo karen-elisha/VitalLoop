@@ -28,13 +28,13 @@ function generateTokens(user: { id: string; email: string; role: string }) {
   const accessToken = jwt.sign(
     { id: user.id, email: user.email, role: user.role },
     config.jwt.secret,
-    { expiresIn: config.jwt.expiresIn as string }
+    { expiresIn: config.jwt.expiresIn } as jwt.SignOptions
   );
   
   const refreshToken = jwt.sign(
     { id: user.id, type: 'refresh' },
     config.jwt.refreshSecret,
-    { expiresIn: config.jwt.refreshExpiresIn as string }
+    { expiresIn: config.jwt.refreshExpiresIn } as jwt.SignOptions
   );
   
   return { accessToken, refreshToken };

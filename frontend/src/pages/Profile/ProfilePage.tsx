@@ -68,7 +68,7 @@ export default function ProfilePage() {
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm text-text-secondary mb-1.5">Language</label>
-                <select className="input-field" value={form.language} onChange={(e) => setForm(p => ({ ...p, language: e.target.value }))}>
+                <select className="input-field" value={form.language} onChange={(e) => setForm(p => ({ ...p, language: e.target.value as 'en' | 'ar' }))}>
                   <option value="en">English</option>
                   <option value="ar">العربية (Arabic)</option>
                 </select>
