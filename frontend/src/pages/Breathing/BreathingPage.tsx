@@ -60,7 +60,7 @@ export default function BreathingPage() {
   const [currentPhase, setCurrentPhase] = useState<Phase>('inhale');
   const [phaseTime, setPhaseTime] = useState(0);
   const [totalTime, setTotalTime] = useState(0);
-  const [currentSessionId, setCurrentSessionId] = useState<string | null>(null);
+  const [, setCurrentSessionId] = useState<string | null>(null);
   const [duration, setDuration] = useState(300);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const queryClient = useQueryClient();
