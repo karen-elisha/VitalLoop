@@ -19,20 +19,44 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="glass-card p-8">
-      <h2 className="text-2xl font-bold text-text-primary mb-2">Welcome back</h2>
-      <p className="text-text-secondary text-sm mb-6">Sign in to your VitalLoop account</p>
+    <div
+      className="glass-card p-8"
+      style={{ boxShadow: '0 8px 48px rgba(15, 23, 42, 0.10), 0 2px 8px rgba(15, 23, 42, 0.06)' }}
+    >
+      <h2 className="text-2xl font-bold mb-1" style={{ color: '#0f172a' }}>Welcome back</h2>
+      <p className="text-sm mb-6" style={{ color: '#64748b' }}>
+        Sign in to your VitalLoop account
+      </p>
 
       {error && (
-        <div className="mb-4 p-3 rounded-lg bg-danger-500/15 border border-danger-500/30 text-danger-400 text-sm">
-          {error}
-          <button onClick={clearError} className="float-right text-danger-400/60 hover:text-danger-400">✕</button>
+        <div
+          className="mb-4 p-3 rounded-xl text-sm flex items-start justify-between"
+          style={{
+            background: 'rgba(239, 68, 68, 0.08)',
+            border: '1px solid rgba(239, 68, 68, 0.20)',
+            color: '#b91c1c',
+          }}
+        >
+          <span>{error}</span>
+          <button
+            onClick={clearError}
+            className="ml-2 transition-opacity hover:opacity-60"
+            style={{ color: '#f87171' }}
+          >
+            ✕
+          </button>
         </div>
       )}
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="login-email" className="block text-sm font-medium text-text-secondary mb-1.5">Email</label>
+          <label
+            htmlFor="login-email"
+            className="block text-sm font-medium mb-1.5"
+            style={{ color: '#374151' }}
+          >
+            Email
+          </label>
           <input
             id="login-email"
             type="email"
@@ -46,7 +70,13 @@ export default function LoginPage() {
         </div>
 
         <div>
-          <label htmlFor="login-password" className="block text-sm font-medium text-text-secondary mb-1.5">Password</label>
+          <label
+            htmlFor="login-password"
+            className="block text-sm font-medium mb-1.5"
+            style={{ color: '#374151' }}
+          >
+            Password
+          </label>
           <input
             id="login-password"
             type="password"
@@ -76,9 +106,13 @@ export default function LoginPage() {
         </button>
       </form>
 
-      <p className="mt-6 text-center text-sm text-text-muted">
+      <p className="mt-6 text-center text-sm" style={{ color: '#94a3b8' }}>
         Don't have an account?{' '}
-        <Link to="/register" className="text-brand-400 hover:text-brand-300 font-medium transition-colors">
+        <Link
+          to="/register"
+          className="font-semibold transition-colors"
+          style={{ color: '#2563eb' }}
+        >
           Create one
         </Link>
       </p>
