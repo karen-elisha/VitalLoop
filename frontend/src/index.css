@@ -2,35 +2,35 @@
 
 /* ============================================
    VitalLoop Design System
-   Premium dark-mode health platform aesthetic
+   Elegant light frosted-glass health platform
    ============================================ */
 
 @theme {
-  /* Brand Colors */
-  --color-brand-50: #eef9ff;
-  --color-brand-100: #d8f1ff;
-  --color-brand-200: #b9e7ff;
-  --color-brand-300: #89daff;
-  --color-brand-400: #51c3ff;
-  --color-brand-500: #28a5ff;
-  --color-brand-600: #1088fc;
-  --color-brand-700: #0a6fe8;
-  --color-brand-800: #0f59bb;
-  --color-brand-900: #134d93;
-  --color-brand-950: #112f59;
+  /* Brand Colors — rich sky blue */
+  --color-brand-50: #eff6ff;
+  --color-brand-100: #dbeafe;
+  --color-brand-200: #bfdbfe;
+  --color-brand-300: #93c5fd;
+  --color-brand-400: #60a5fa;
+  --color-brand-500: #3b82f6;
+  --color-brand-600: #2563eb;
+  --color-brand-700: #1d4ed8;
+  --color-brand-800: #1e40af;
+  --color-brand-900: #1e3a8a;
+  --color-brand-950: #172554;
 
   /* Accent / Health Green */
-  --color-health-50: #edfff4;
-  --color-health-100: #d5ffe6;
-  --color-health-200: #aeffce;
-  --color-health-300: #6fffa8;
-  --color-health-400: #29f57a;
-  --color-health-500: #00dc5a;
-  --color-health-600: #00b748;
-  --color-health-700: #008f3b;
-  --color-health-800: #067032;
-  --color-health-900: #085c2c;
-  --color-health-950: #003416;
+  --color-health-50: #f0fdf4;
+  --color-health-100: #dcfce7;
+  --color-health-200: #bbf7d0;
+  --color-health-300: #86efac;
+  --color-health-400: #4ade80;
+  --color-health-500: #22c55e;
+  --color-health-600: #16a34a;
+  --color-health-700: #15803d;
+  --color-health-800: #166534;
+  --color-health-900: #14532d;
+  --color-health-950: #052e16;
 
   /* Warning / Alert Amber */
   --color-alert-400: #fbbf24;
@@ -42,33 +42,34 @@
   --color-danger-500: #ef4444;
   --color-danger-600: #dc2626;
 
-  /* Surface Colors (Dark Mode) */
-  --color-surface-900: #0a0e17;
-  --color-surface-800: #0f1629;
-  --color-surface-700: #151d35;
-  --color-surface-600: #1c2541;
-  --color-surface-500: #243054;
-  --color-surface-400: #334166;
+  /* Surface Colors — Light Mode */
+  --color-surface-900: #ffffff;
+  --color-surface-800: #f8fafc;
+  --color-surface-700: #f1f5f9;
+  --color-surface-600: #e8edf5;
+  --color-surface-500: #cbd5e1;
+  --color-surface-400: #94a3b8;
 
-  /* Glass effect */
-  --color-glass: rgba(15, 22, 41, 0.7);
-  --color-glass-border: rgba(59, 130, 246, 0.15);
-  --color-glass-hover: rgba(15, 22, 41, 0.85);
+  /* Glass effect — frosted white */
+  --color-glass: rgba(255, 255, 255, 0.72);
+  --color-glass-border: rgba(148, 163, 184, 0.22);
+  --color-glass-hover: rgba(255, 255, 255, 0.90);
 
-  /* Text */
-  --color-text-primary: #f1f5f9;
-  --color-text-secondary: #94a3b8;
-  --color-text-muted: #64748b;
+  /* Text — dark on light */
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-muted: #94a3b8;
 
   /* Typography */
   --font-sans: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
-  /* Shadows */
-  --shadow-glow: 0 0 30px rgba(40, 165, 255, 0.15);
-  --shadow-glow-health: 0 0 30px rgba(0, 220, 90, 0.15);
-  --shadow-glow-danger: 0 0 30px rgba(239, 68, 68, 0.15);
-  --shadow-card: 0 4px 30px rgba(0, 0, 0, 0.3);
+  /* Shadows — soft and warm */
+  --shadow-glow: 0 0 24px rgba(59, 130, 246, 0.20);
+  --shadow-glow-health: 0 0 24px rgba(34, 197, 94, 0.20);
+  --shadow-glow-danger: 0 0 24px rgba(239, 68, 68, 0.20);
+  --shadow-card: 0 4px 24px rgba(15, 23, 42, 0.07), 0 1px 4px rgba(15, 23, 42, 0.04);
+  --shadow-card-hover: 0 8px 40px rgba(15, 23, 42, 0.10), 0 2px 8px rgba(15, 23, 42, 0.06);
 
   /* Border Radius */
   --radius-lg: 1rem;
@@ -84,16 +85,18 @@
 
 /* Base Styles */
 html {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--color-surface-900);
+  background: linear-gradient(135deg, #eef4ff 0%, #f8fbff 45%, #f0fdf6 100%);
+  background-attachment: fixed;
   color: var(--color-text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
 /* RTL Support */
@@ -109,7 +112,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-surface-800);
+  background: var(--color-surface-700);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -133,12 +136,12 @@ body {
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(40, 165, 255, 0.2); }
-  50% { box-shadow: 0 0 40px rgba(40, 165, 255, 0.4); }
+  0%, 100% { box-shadow: 0 0 16px rgba(59, 130, 246, 0.2); }
+  50% { box-shadow: 0 0 32px rgba(59, 130, 246, 0.4); }
 }
 
 @keyframes breathe {
-  0%, 100% { transform: scale(1); opacity: 0.8; }
+  0%, 100% { transform: scale(1); opacity: 0.85; }
   50% { transform: scale(1.15); opacity: 1; }
 }
 
@@ -152,76 +155,141 @@ body {
   100% { background-position: 200% center; }
 }
 
-/* Glass Card Utility */
+@keyframes orb-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(15px, -20px) scale(1.05); }
+  66% { transform: translate(-10px, 10px) scale(0.97); }
+}
+
+/* ============================================
+   Glass Card — frosted white
+   ============================================ */
 .glass-card {
   background: var(--color-glass);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   border: 1px solid var(--color-glass-border);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-card);
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-card:hover {
   background: var(--color-glass-hover);
-  border-color: rgba(59, 130, 246, 0.25);
-  box-shadow: var(--shadow-glow);
+  border-color: rgba(59, 130, 246, 0.18);
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-2px);
 }
 
-/* Gradient Text */
+/* ============================================
+   Typography Utilities
+   ============================================ */
 .gradient-text {
-  background: linear-gradient(135deg, var(--color-brand-400), var(--color-health-400));
+  background: linear-gradient(135deg, var(--color-brand-600), var(--color-health-500));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Gradient Backgrounds */
+/* ============================================
+   Gradient Backgrounds
+   ============================================ */
 .gradient-brand {
-  background: linear-gradient(135deg, var(--color-brand-600), var(--color-brand-800));
+  background: linear-gradient(135deg, var(--color-brand-500), var(--color-brand-700));
 }
 
 .gradient-health {
-  background: linear-gradient(135deg, var(--color-health-500), var(--color-health-700));
+  background: linear-gradient(135deg, var(--color-health-400), var(--color-health-600));
 }
 
 .gradient-mesh {
-  background: 
-    radial-gradient(ellipse at 20% 50%, rgba(40, 165, 255, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 20%, rgba(0, 220, 90, 0.06) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(34, 197, 94, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(168, 85, 247, 0.04) 0%, transparent 50%),
+    linear-gradient(135deg, #eef4ff 0%, #f8fbff 50%, #f0fdf6 100%);
 }
 
-/* Status Badges */
-.badge-low { background: rgba(0, 220, 90, 0.15); color: var(--color-health-400); }
-.badge-medium { background: rgba(251, 191, 36, 0.15); color: var(--color-alert-400); }
-.badge-high { background: rgba(249, 115, 22, 0.15); color: #fb923c; }
-.badge-critical { background: rgba(239, 68, 68, 0.15); color: var(--color-danger-400); }
+/* ============================================
+   Status Badges — light mode
+   ============================================ */
+.badge-low {
+  background: rgba(34, 197, 94, 0.10);
+  color: #15803d;
+  border: 1px solid rgba(34, 197, 94, 0.20);
+  padding: 0.2rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-block;
+}
+.badge-medium {
+  background: rgba(245, 158, 11, 0.10);
+  color: #b45309;
+  border: 1px solid rgba(245, 158, 11, 0.20);
+  padding: 0.2rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-block;
+}
+.badge-high {
+  background: rgba(249, 115, 22, 0.10);
+  color: #c2410c;
+  border: 1px solid rgba(249, 115, 22, 0.20);
+  padding: 0.2rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-block;
+}
+.badge-critical {
+  background: rgba(239, 68, 68, 0.10);
+  color: #b91c1c;
+  border: 1px solid rgba(239, 68, 68, 0.20);
+  padding: 0.2rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-block;
+}
 
-/* Input Styles */
+/* ============================================
+   Input Styles — light mode
+   ============================================ */
 .input-field {
   width: 100%;
   padding: 0.75rem 1rem;
-  background: var(--color-surface-700);
-  border: 1px solid var(--color-surface-500);
+  background: rgba(255, 255, 255, 0.90);
+  border: 1.5px solid rgba(148, 163, 184, 0.35);
   border-radius: var(--radius-lg);
   color: var(--color-text-primary);
   font-size: 0.95rem;
+  font-family: var(--font-sans);
   transition: all 0.2s ease;
   outline: none;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
 }
 
 .input-field:focus {
-  border-color: var(--color-brand-500);
-  box-shadow: 0 0 0 3px rgba(40, 165, 255, 0.15);
+  border-color: var(--color-brand-400);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12), 0 1px 3px rgba(15, 23, 42, 0.04);
+  background: #ffffff;
 }
 
 .input-field::placeholder {
   color: var(--color-text-muted);
 }
 
-/* Button Styles */
+/* Select dropdown */
+.input-field option {
+  background: #ffffff;
+  color: var(--color-text-primary);
+}
+
+/* ============================================
+   Button Styles
+   ============================================ */
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -236,22 +304,27 @@ body {
   cursor: pointer;
   transition: all 0.2s ease;
   font-size: 0.95rem;
+  font-family: var(--font-sans);
+  box-shadow: 0 2px 10px rgba(59, 130, 246, 0.30);
+  letter-spacing: 0.01em;
 }
 
 .btn-primary:hover {
   background: linear-gradient(135deg, var(--color-brand-400), var(--color-brand-500));
   transform: translateY(-1px);
-  box-shadow: var(--shadow-glow);
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.42);
 }
 
 .btn-primary:active {
   transform: translateY(0);
+  box-shadow: 0 1px 6px rgba(59, 130, 246, 0.25);
 }
 
 .btn-primary:disabled {
   opacity: 0.5;
   cursor: not-allowed;
   transform: none;
+  box-shadow: none;
 }
 
 .btn-secondary {
@@ -260,19 +333,28 @@ body {
   justify-content: center;
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
-  background: var(--color-surface-700);
-  color: var(--color-text-primary);
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--color-text-secondary);
   font-weight: 500;
   border-radius: var(--radius-lg);
-  border: 1px solid var(--color-surface-500);
+  border: 1.5px solid rgba(148, 163, 184, 0.30);
   cursor: pointer;
   transition: all 0.2s ease;
   font-size: 0.95rem;
+  font-family: var(--font-sans);
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.06);
 }
 
 .btn-secondary:hover {
-  background: var(--color-surface-600);
-  border-color: var(--color-brand-500);
+  background: #ffffff;
+  border-color: var(--color-brand-400);
+  color: var(--color-brand-600);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
 }
 
 .btn-health {
@@ -281,21 +363,37 @@ body {
   justify-content: center;
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
-  background: linear-gradient(135deg, var(--color-health-600), var(--color-health-700));
+  background: linear-gradient(135deg, var(--color-health-500), var(--color-health-600));
   color: white;
   font-weight: 600;
   border-radius: var(--radius-lg);
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
+  font-family: var(--font-sans);
+  box-shadow: 0 2px 10px rgba(34, 197, 94, 0.28);
+  letter-spacing: 0.01em;
 }
 
 .btn-health:hover {
-  background: linear-gradient(135deg, var(--color-health-500), var(--color-health-600));
-  box-shadow: var(--shadow-glow-health);
+  background: linear-gradient(135deg, var(--color-health-400), var(--color-health-500));
+  box-shadow: 0 4px 20px rgba(34, 197, 94, 0.40);
+  transform: translateY(-1px);
 }
 
-/* Page Transition */
+.btn-health:active {
+  transform: translateY(0);
+}
+
+.btn-health:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ============================================
+   Page Transition
+   ============================================ */
 .page-enter {
   animation: var(--animate-slide-up);
 }
