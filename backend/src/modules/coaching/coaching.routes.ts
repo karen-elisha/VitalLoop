@@ -47,7 +47,30 @@ router.post('/chat', authenticate, async (req: AuthRequest, res: Response) => {
     // Get user context for AI
     const glucoseResult = await query(
       `SELECT value_mg_dl, reading_type, measured_at FROM glucose_readings 
-       WHERE user_id = $1 ORDER BY measured_at DESC LIMIT 5`,
+       WHERE user_id = $1 ORDER BY measured_at DESC LIMIT 8`,
+      [req.user!.id]
+    );
+
+    const mealsResult = await query(
+      `SELECT meal_type, logged_at, total_calories, total_carbs_g, total_protein_g
+       FROM meals WHERE user_id = $1 ORDER BY logged_at DESC LIMIT 5`,
+      [req.user!.id]
+    );
+
+    const weightResult = await query(
+      `SELECT weight_kg, measured_at FROM weight_entries WHERE user_id = $1 ORDER BY measured_at DESC LIMIT 5`,
+      [req.user!.id]
+    );
+
+    const breathingResult = await query(
+      `SELECT session_type, duration_seconds, completion_status, started_at
+       FROM breathing_sessions WHERE user_id = $1 ORDER BY started_at DESC LIMIT 5`,
+      [req.user!.id]
+    );
+
+    const predictionResult = await query(
+      `SELECT risk_level, risk_score, explanation, created_at
+       FROM predictions WHERE user_id = $1 ORDER BY created_at DESC LIMIT 1`,
       [req.user!.id]
     );
     
@@ -60,6 +83,10 @@ router.post('/chat', authenticate, async (req: AuthRequest, res: Response) => {
         history: historyResult.rows,
         context: {
           recentGlucose: glucoseResult.rows,
+          recentMeals: mealsResult.rows,
+          recentWeight: weightResult.rows,
+          recentBreathing: breathingResult.rows,
+          latestPrediction: predictionResult.rows,
         },
       }, { timeout: 30000 });
       
