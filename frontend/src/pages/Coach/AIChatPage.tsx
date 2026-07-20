@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { useQuery, useMutation } from '@tanstack/react-query';
+import { useAuthStore } from '../../stores/authStore';
 import api from '../../services/api';
 import type { CoachingConversation, CoachingMessage } from '../../types';
 
@@ -9,6 +10,7 @@ export default function AIChatPage() {
   const [messages, setMessages] = useState<{ role: string; content: string }[]>([]);
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const { user } = useAuthStore();
 
   const { data: conversations } = useQuery<{ conversations: CoachingConversation[] }>({
     queryKey: ['coaching-conversations'],
@@ -17,7 +19,10 @@ export default function AIChatPage() {
 
   const chatMutation = useMutation({
     mutationFn: async (data: { content: string; conversationId?: string }) => {
-      return (await api.post('/coaching/chat', data)).data;
+      return (await api.post('/coaching/chat', {
+        ...data,
+        userId: user?.id,
+      })).data;
     },
     onSuccess: (data) => {
       setConversationId(data.conversationId);
