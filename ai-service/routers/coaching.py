@@ -112,19 +112,25 @@ async def _llm_coaching(data: CoachingInput, api_key: str, retrieved_context: li
 
 
 async def _huggingface_coaching(data: CoachingInput, model_name: str, retrieved_context: list[str]) -> Optional[CoachingOutput]:
-    """Try to run a Hugging Face model for coaching if dependencies are available."""
+    """Run a Hugging Face model for coaching via huggingface_hub InferenceClient or local transformers pipeline."""
+    prompt = _build_hf_prompt(data.message, retrieved_context, data.context or {})
+    
+    # Strategy 1: Try Hugging Face Inference API via huggingface_hub
+    hf_token = os.getenv("HF_TOKEN") or os.getenv("HUGGINGFACEHUB_API_TOKEN")
+    try:
+        from huggingface_hub import InferenceClient
+        client = InferenceClient(model=model_name, token=hf_token)
+        generated_text = client.text_generation(prompt, max_new_tokens=180, temperature=0.7)
+        if generated_text:
+            response = generated_text.split("Assistant:", 1)[-1].strip() if "Assistant:" in generated_text else generated_text.strip()
+            return CoachingOutput(response=response, suggestions=_generate_suggestions(data.message))
+    except Exception:
+        pass
+
+    # Strategy 2: Try local transformers pipeline if installed
     try:
         from transformers import pipeline
-    except Exception:
-        return None
-
-    try:
         generator = pipeline("text-generation", model=model_name, tokenizer=model_name, device=-1)
-    except Exception:
-        return None
-
-    prompt = _build_hf_prompt(data.message, retrieved_context, data.context or {})
-    try:
         result = generator(prompt, max_new_tokens=180, do_sample=True, temperature=0.8, top_p=0.95)
         text = result[0]["generated_text"]
         response = text.split("Assistant:", 1)[-1].strip() if "Assistant:" in text else text.strip()
